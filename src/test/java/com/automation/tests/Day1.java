@@ -18,7 +18,7 @@ public class Day1 {
     AppiumDriver<MobileElement> driver;
 
     @Test
-    public void test1() throws Exception{
+    public void test1() throws Exception {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         //since we use android, put android. could be IOS
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
@@ -62,7 +62,6 @@ public class Day1 {
         MobileElement minus = driver.findElement(MobileBy.AccessibilityId("minus"));
 
 
-
         digit2.click();//click on digit 2
         plus.click();//click on plus
         digit2.click();//click on digit 2
@@ -72,16 +71,29 @@ public class Day1 {
 
         Assert.assertEquals("4", resultText);//assert that result is equals to 4
 
+        //4 * 5 = 20
+        getDigit(4).click();
+        multiply.click();
+        getDigit(5).click();
+        equals.click();
 
+        resultText = result.getText();//read the text of result
+        Assert.assertEquals("20", resultText);
 
+        //8/4=2
+        getDigit(8).click();
+        divide.click();
+        getDigit(4).click();
+        equals.click();
 
-
+        resultText = result.getText();//read the text of result
+        Assert.assertEquals("2", resultText);
 
         driver.closeApp();
     }
 
 
-    public MobileElement getDigit(int digit){
-        return  driver.findElement(By.id("com.android.calculator2:id/digit_"+digit));
+    public MobileElement getDigit(int digit) {
+        return driver.findElement(By.id("com.android.calculator2:id/digit_" + digit));
     }
 }
