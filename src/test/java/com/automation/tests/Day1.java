@@ -5,6 +5,7 @@ import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
@@ -53,6 +54,15 @@ public class Day1 {
         MobileElement result = driver.findElement(By.id("com.android.calculator2:id/result"));
 
 
+
+        digit2.click();//click on digit 2
+        plus.click();//click on plus
+        digit2.click();//click on digit 2
+        equals.click();//click on equals
+
+        String resultText = result.getText();//read the text of result
+
+        Assert.assertEquals("4", resultText);//assert that result is equals to 4
 
         driver.closeApp();
     }
