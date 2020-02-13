@@ -89,6 +89,17 @@ public class Day1 {
         resultText = result.getText();//read the text of result
         Assert.assertEquals("2", resultText);
 
+        //50 - 30 = 20
+        getDigit(5).click();
+        getDigit(0).click();
+        minus.click();
+        getDigit(2).click();
+        getDigit(0).click();
+        equals.click();
+
+        resultText = result.getText();//read the text of result
+        Assert.assertEquals("30", resultText);
+
         driver.closeApp();
     }
 
