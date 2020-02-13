@@ -48,10 +48,18 @@ public class Day1 {
         Thread.sleep(3000);
 
         MobileElement digit2 = driver.findElement(By.id("com.android.calculator2:id/digit_2"));
+        MobileElement digit4 = driver.findElement(By.id("com.android.calculator2:id/digit_4"));
+        MobileElement digit6 = driver.findElement(By.id("com.android.calculator2:id/digit_6"));
+        MobileElement digit7 = driver.findElement(By.id("com.android.calculator2:id/digit_7"));
+
+
         //MobileBy - is a child class of By
         MobileElement plus = driver.findElement(MobileBy.AccessibilityId("plus"));
         MobileElement equals = driver.findElement(MobileBy.AccessibilityId("equals"));
         MobileElement result = driver.findElement(By.id("com.android.calculator2:id/result"));
+        MobileElement multiply = driver.findElement(MobileBy.AccessibilityId("multiply"));
+        MobileElement divide = driver.findElement(MobileBy.AccessibilityId("divide"));
+        MobileElement minus = driver.findElement(MobileBy.AccessibilityId("minus"));
 
 
 
@@ -64,6 +72,16 @@ public class Day1 {
 
         Assert.assertEquals("4", resultText);//assert that result is equals to 4
 
+
+
+
+
+
         driver.closeApp();
+    }
+
+
+    public MobileElement getDigit(int digit){
+        return  driver.findElement(By.id("com.android.calculator2:id/digit_"+digit));
     }
 }
