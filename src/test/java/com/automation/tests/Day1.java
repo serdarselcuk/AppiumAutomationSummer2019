@@ -1,6 +1,7 @@
 package com.automation.tests;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -46,6 +47,10 @@ public class Day1 {
         Thread.sleep(3000);
 
         MobileElement digit2 = driver.findElement(By.id("com.android.calculator2:id/digit_2"));
+        //MobileBy - is a child class of By
+        MobileElement plus = driver.findElement(MobileBy.AccessibilityId("plus"));
+        MobileElement equals = driver.findElement(MobileBy.AccessibilityId("equals"));
+        MobileElement result = driver.findElement(By.id("com.android.calculator2:id/result"));
 
 
 
