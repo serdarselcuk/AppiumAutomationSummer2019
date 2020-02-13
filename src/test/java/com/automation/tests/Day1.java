@@ -89,7 +89,7 @@ public class Day1 {
         resultText = result.getText();//read the text of result
         Assert.assertEquals("2", resultText);
 
-        //50 - 30 = 20
+        //50 - 20 = 30
         getDigit(5).click();
         getDigit(0).click();
         minus.click();
@@ -99,6 +99,23 @@ public class Day1 {
 
         resultText = result.getText();//read the text of result
         Assert.assertEquals("30", resultText);
+
+        driver.closeApp();
+    }
+
+    @Test
+    public void test2() throws Exception{
+        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+        desiredCapabilities.setCapability("platformName", "Android");
+        desiredCapabilities.setCapability(MobileCapabilityType.VERSION, "7.0");
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_2");
+        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
+        desiredCapabilities.setCapability("app", "https://cybertek-appium.s3.amazonaws.com/etsy.apk");
+        driver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
+        Thread.sleep(3000);
+
+
+
 
         driver.closeApp();
     }
