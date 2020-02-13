@@ -1,0 +1,125 @@
+The worst problem that I had with appium was: Unknown error
+
+I figured out that issue was in SDK version.
+I had to update Appium server and Android SDK.
+
+
+- virtual device is very slow (either you are using Mac or Windows), real mobile device should be better.
+- You cannot test iphone without Mac OS --> plus you need a xcode installed. Apple doesn't allow to even create mac vm.
+- Also, new mac os catalina caused a lot of issues.
+
+you don't need xcode for now, it's for ios, and it's very heavy. We gonna do android only.
+
+studio2 <-- my user name
+
+export JAVA_HOME=$(/usr/libexec/java_home)
+export ANDROID_HOME=/Users/studio2/Library/Android/sdk
+export PATH=$PATH:~/.local/bin$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$JAVA_HOME/bin
+
+If you are using Mac OS Catalina, you may have issues with setting up environment variables. Instead of .bash_profile, use .zprofile
+Stackoverflow topic: Link (Links to an external site.)
+
+Create .zprofile under user directory:
+
+touch ~/.zprofile
+Open .zprofile file to setup environment variables:
+
+nano ~/.zprofile
+Insert following text. Just change myuser to your user.
+
+export JAVA_HOME=$(/usr/libexec/java_home)
+export ANDROID_HOME=/Users/myuser/Library/Android/sdk
+export PATH=$PATH:~/.local/bin$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$JAVA_HOME/bin
+
+where myuser, it's you mac user name. To find out your username, run whoami command in the terminal.
+
+Go Home --> press command + shift + . to see invisible files. Open .bash_profile file with sublime and edit it.
+
+*********************
+[W3C] Encountered internal error running command: Error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+
+ - You didn't setup environment variables.
+
+ Connection refused: address of appium server is not correct or appium server is not started.
+
+
+- IF you are getting error: app is required !
+
+	That means you didn't specify which app to test. You need to include into desired capabilities either:
+
+		"app", "/path/to/the_app.apk"
+
+	###or
+
+
+		"appPackage", "com.android.calculator2"
+	    "appActivity", "com.android.calculator2.Calculator"
+
+	    You can find this info from APK info app.
+
+    ###or
+
+    	"browser", "Chrome" - to run tests on the mobile chrome browser. For ios, it's gonna be only "Safari"
+
+###################################
+
+
+Go to terminal and write: adb devices , it will show you list of the devices that are available.
+
+ - terminal for mac
+ - powershell for windows
+
+device should have a status "device", it it's some thing else like "offline", it will not work.
+
+Studio-2-Teacher:~ studio2$ adb devices
+
+List of devices attached
+
+emulator-5554	device
+
+
+Q: haxm not installed but doesn't let me install??
+
+Go to Android SDK --> SDK tools and install it (Intel® HAXM for Android)
+
+I use appium inspector to find locators. To start appium inspector you need device (real or emulator, locally) and you need to provide desired capabilities, same like in your java project. You need to specify platform, version, app.
+
+
+in selenium, we use xpath to find by text: //*[text()='some text']
+
+in appium, we use xpath to find by text: //*[@text='some text']
+
+also, you can use id, class but not css selector.
+
+
+There is a new locator type that calls: accessibility id
+
+accessibility id - is always unique, and it's like id in selenium.
+id in appium and id in selenium are a little different. Id in appium not always unique.
+before using it, check first.
+
+
+
+***************************************
+
+	Appium - it's an open source test automation tool for IOS, Android, Mac OS and Windows.
+	Appium is based on selenium, so many features are very similar.
+	There are 3 types of mobile apps: web, native and hybrid.
+	To start with appium, you need to have a device, appium server and java project.
+	When you configure a project, don't forget to specify desired capabilities.
+	With desired capabilities we specify: device name, platform, version, app, etc...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

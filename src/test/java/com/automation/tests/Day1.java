@@ -8,7 +8,9 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
@@ -110,12 +112,28 @@ public class Day1 {
         desiredCapabilities.setCapability(MobileCapabilityType.VERSION, "7.0");
         desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_2");
         desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
+        //to specify app for testing.
+        //it can be on your computer or somewhere in cloud
         desiredCapabilities.setCapability("app", "https://cybertek-appium.s3.amazonaws.com/etsy.apk");
         driver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
-        Thread.sleep(3000);
 
+        Thread.sleep(10000);                    //com.etsy.android:id/search_src_text
+        MobileElement search = driver.findElement(By.id("com.etsy.android:id/search_src_text"));
 
+        search.click();
+        try {
+            search.sendKeys("Java");
+        }catch (WebDriverException e){
+            search = driver.findElement(By.id("com.etsy.android:id/search_src_text"));
+            search.sendKeys("Java");
+        }
 
+        Thread.sleep(5000);
+
+        driver.getKeyboard().pressKey(Keys.ENTER);
+        driver.hideKeyboard();
+
+        Thread.sleep(5000);
 
         driver.closeApp();
     }
