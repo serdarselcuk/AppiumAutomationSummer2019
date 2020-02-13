@@ -5,6 +5,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -42,8 +43,11 @@ public class Day1 {
         // in desired capabilities we specify device and  application to test information
 
         driver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
-
         Thread.sleep(3000);
+
+        MobileElement digit2 = driver.findElement(By.id("com.android.calculator2:id/digit_2"));
+
+
 
         driver.closeApp();
     }
