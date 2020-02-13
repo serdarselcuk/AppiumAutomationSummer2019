@@ -32,6 +32,10 @@ public class Day1 {
         // Set your application's package name.
         desiredCapabilities.setCapability("appActivity", "com.android.calculator2.Calculator");
         // Set your application's MainActivity i.e. the LAUNCHER activity name.
+
+        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
+
+
         //"http://localhost:4723/wd/hub" - address of the appium server. If you have appium server on the same computer - just use localhost
         //4723 - default appium port.
         //we need to provide 2 parameters: URL of appium servers and desired capabilities
