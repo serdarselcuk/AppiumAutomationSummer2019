@@ -2,8 +2,10 @@ package com.automation.tests;
 
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.touch.offset.ElementOption;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +25,7 @@ public class Day2 {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_2");
         desiredCapabilities.setCapability(MobileCapabilityType.VERSION, "7.0");
-        desiredCapabilities.setCapability(MobileCapabilityType.APP, System.getProperty("user.dir") + "/api_demos.apk");
+        desiredCapabilities.setCapability(MobileCapabilityType.APP, "https://cybertek-appium.s3.amazonaws.com/api_demos.apk");
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
         desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
         try {
@@ -41,6 +43,7 @@ public class Day2 {
 
     @Test
     public void test() throws Exception {
+        //we can apply explicit wait here too, like in selenium
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Views")));
 
@@ -61,6 +64,16 @@ public class Day2 {
                 + "new UiSelector().textContains(\"ImageSwitcher\"));"));
 
         imageSwitcher.click();
+        //if we need to tap on element or use long press, we can use TouchAction class
 
+        driver.navigate().back();
+
+        TouchAction touchAction = new TouchAction(driver);
+
+        //to tap on element
+        //you can chain actions like in Actions class
+        //so you can tap twice
+        //drag and drop: long press then move to target --> build().perform()
+        touchAction.tap(new ElementOption().withElement(imageSwitcher)).perform();
     }
 }
