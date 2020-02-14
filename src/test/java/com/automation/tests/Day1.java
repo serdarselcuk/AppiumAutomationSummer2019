@@ -121,17 +121,12 @@ public class Day1 {
         MobileElement search = driver.findElement(By.id("com.etsy.android:id/search_src_text"));
 
         search.click();
-        try {
-            search.sendKeys("Java");
-        }catch (WebDriverException e){
-            search = driver.findElement(By.id("com.etsy.android:id/search_src_text"));
-            search.sendKeys("Java");
-        }
+
+        search.sendKeys("Java");
 
         Thread.sleep(5000);
 
         driver.getKeyboard().pressKey(Keys.ENTER);
-        driver.hideKeyboard();
 
         Thread.sleep(5000);
 
