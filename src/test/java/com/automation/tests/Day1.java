@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.AutomationName;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,8 +28,8 @@ public class Day1 {
         //version of your device
         desiredCapabilities.setCapability(MobileCapabilityType.VERSION, "7.0");
         //name of the device
-        //if it's a real device, you need to use udid parameter
-        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_2");
+        //if it's a real device, you need to use udid parameter "MobileCapabilityType.UDID"
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_3a_API_24");
         //either you can specify app --> //path/to/the/appp.apk
         //or, if app is already installed, you need to specify appActivity and AppPackage
         //this info you can find in the internet, at work - from developers
@@ -39,7 +40,6 @@ public class Day1 {
         // Set your application's MainActivity i.e. the LAUNCHER activity name.
 
         desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
-
 
         //"http://localhost:4723/wd/hub" - address of the appium server. If you have appium server on the same computer - just use localhost
         //4723 - default appium port.
@@ -131,6 +131,30 @@ public class Day1 {
         Thread.sleep(5000);
 
         driver.closeApp();
+    }
+    @Test
+    public void test3(){
+
+        DesiredCapabilities des= new DesiredCapabilities();
+        des.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
+        des.setCapability(MobileCapabilityType.VERSION, "7.0");
+        des.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_3a_API_24" );
+        des.setCapability("appPackage", "com.instagram.android");
+        des.setCapability("appActivity", "com.instagram.mainactivity.MainActivity");
+        des.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
+
+        try {
+            driver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), des);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("serdar");
+        MobileElement login = driver.findElement(By.id("com.instagram.android:id/log_in_button"));
+        System.out.println(login.isEnabled());
+        System.out.println(login.isDisplayed());
+
+        login.click();
     }
 
 

@@ -12,6 +12,8 @@ import org.junit.Test;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
@@ -34,7 +36,7 @@ public class Day2 {
             e.printStackTrace();
         }
     }
-
+    
     @After
     public void teardown() {
         driver.closeApp();
@@ -46,13 +48,9 @@ public class Day2 {
         //we can apply explicit wait here too, like in selenium
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Views")));
-
-        driver.findElement(MobileBy.AccessibilityId("Views")).click();
-
         MobileElement webview = driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable("
                 + "new UiSelector().scrollable(true)).scrollIntoView("
                 + "new UiSelector().textContains(\"WebView\"));"));
-
         //textContains or text or id, className
         webview.click();
 
