@@ -12,12 +12,8 @@ public class serdar {
     @Test(dataProvider = "provide")
     public void test(Object[][] a){
 
-<<<<<<< HEAD
         System.out.println("newsa");
-=======
-        System.out.println("kkk");
->>>>>>> newSer
-        System.out.println(a);
+
     }
 
 
