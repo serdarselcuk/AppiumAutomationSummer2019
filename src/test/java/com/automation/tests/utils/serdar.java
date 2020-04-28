@@ -12,6 +12,7 @@ public class serdar {
     @Test(dataProvider = "provide")
     public void test(Object[][] a){
 
+        System.out.println("new");
         System.out.println(a);
     }
 
